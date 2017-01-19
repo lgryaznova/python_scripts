@@ -52,7 +52,7 @@ while choice != 'y':
             print('Cannot recognize your answer. To exit script press Ctrl-C.')
     else:
         break
-print()
+print('\nProcessing...\n')
 
 # read in the list of subnets
 netlist = []
