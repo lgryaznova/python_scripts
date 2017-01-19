@@ -74,7 +74,7 @@ str(netlist[i].network_address)))
         # if not an IPv4 address, mark as error and log the error
         except ValueError as ex2:
             invalid_lines.append(i)
-            # empty strings are omitted without logging, count them separately
+            # empty strings are omitted without logging
             if netlist[i] != '':
                 print('Invalid subnet address: {0}.'.format(str(ex2)))
 
