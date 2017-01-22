@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 
 """
-This module takes a list of IPv4 subnets from a file specified by the user (with
-each subnet on a new line), gets a list of usable host addresses of each subnet
-and writes all these hosts to an output file specified by the user
-(each host on a new line).
+This module takes a list of IPv4 subnets from a file
+specified by the user (with each subnet on a new line),
+gets a list of usable host addresses of each subnet and
+writes all these hosts to an output file specified
+by the user (each host on a new line).
 
-If a host address is given instead of the subnet address, the corresponding
-subnet address is used instead with no exception thrown. However, the error
-message will be displayed. If the input file contains info other than IPv4
-addresses, only IPv4 addresses will be processed and other lines will be
-omitted with the error message displayed as well.
+If a host address is given instead of the subnet address,
+the corresponding subnet address is used instead with no
+exception thrown. However, the error message will be displayed.
+If the input file contains info other than IPv4 addresses,
+only IPv4 addresses will be processed and other lines will
+be omitted with the error message displayed as well.
 
-The scipt must be in the same folder as the input file. The output file will be
-located in this folder, too.
+The script must be in the same folder as the input file,
+the output file will be located in it with extention ".out"
+unless other name is specified by user.
+
+Usage: ./expand_subnets.py <file_with_subnets>
+file_with_subnets - name of the file with a list of IPv4 subnets
 """
 import ipaddress
 import os
@@ -22,6 +28,9 @@ import sys
 
 # user interface
 def usage():
+    """
+    Displays how to use the script
+    """
     print('\n\
 *****************************************************************\n\
 This module takes a list of IPv4 subnets from a file\n\
@@ -36,8 +45,9 @@ If the input file contains info other than IPv4 addresses,\n\
 only IPv4 addresses will be processed and other lines will\n\
 be omitted with the error message displayed as well.\n\n\
 The script must be in the same folder as the input file,\n\
-the output file will be located in it, too.\n\n\
-Usage: ./expand_subnet.py <file_with_subnets>\n\
+the output file will be located in it with extention ".out"\n\
+unless other name is specified by user.\n\n\
+Usage: ./expand_subnets.py <file_with_subnets>\n\
 file_with_subnets - name of the file with a list of IPv4 subnets\n\
 *****************************************************************\n')
 
@@ -56,6 +66,14 @@ def hosts_generator(input_list):
 
 
 def body(f_input):
+    """
+    Main function, processes the input textfile with IPv4 subnets
+    and writes the result into the output file.
+
+    f_input - textfile to process
+
+    The output file is named f_input + '.out'
+    """
     f_output = f_input + ".out"
     choice = ''
     while choice != 'y':
